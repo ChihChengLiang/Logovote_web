@@ -1,14 +1,16 @@
 const express = require('express');
 const Web3 = require('web3');
-const http = require('http');
-const url = require('url');
-const WebSocket = require('ws');
 const app = express();
+
+
+
+const cors = require('cors')
+app.use(cors())
+
+// const expressWs = require('express-ws')(app);
 
 const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 
-const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
 
 
 const contract_address = "0x3Ab1d534Bb477f516817eFaAf0B569f419b8e292";
@@ -16,6 +18,11 @@ const logovote_abi = [{ "constant": true, "inputs": [], "name": "endBlock", "out
   ;
 const logo_abi = [{ "constant": false, "inputs": [], "name": "tips", "outputs": [], "payable": true, "type": "function" }, { "constant": true, "inputs": [], "name": "owner", "outputs": [{ "name": "", "type": "address" }], "payable": false, "type": "function" }, { "constant": false, "inputs": [{ "name": "_metadataUrl", "type": "string" }], "name": "setMetadata", "outputs": [], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "author", "outputs": [{ "name": "", "type": "address" }], "payable": false, "type": "function" }, { "constant": false, "inputs": [], "name": "claimReward", "outputs": [], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "metadataUrl", "outputs": [{ "name": "", "type": "string" }], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "logoVote", "outputs": [{ "name": "", "type": "address" }], "payable": false, "type": "function" }, { "constant": false, "inputs": [{ "name": "newOwner", "type": "address" }], "name": "transferOwnership", "outputs": [], "payable": false, "type": "function" }, { "inputs": [{ "name": "_owner", "type": "address" }, { "name": "_author", "type": "address" }, { "name": "_metadatUrl", "type": "string" }], "payable": false, "type": "constructor" }, { "payable": true, "type": "fallback" }, { "anonymous": false, "inputs": [{ "indexed": false, "name": "_from", "type": "address" }, { "indexed": false, "name": "_value", "type": "uint256" }], "name": "ReceiveTips", "type": "event" }];
 const LogoVote = web3.eth.contract(logovote_abi).at(contract_address);
+
+const token_address = "0x795a9bFa0B30b92eFE663cBfbEC1656b6378748E"
+const token_abi = [{ "constant": true, "inputs": [], "name": "name", "outputs": [{ "name": "", "type": "string" }], "payable": false, "type": "function" }, { "constant": false, "inputs": [{ "name": "_spender", "type": "address" }, { "name": "_value", "type": "uint256" }], "name": "approve", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "totalSupply", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "type": "function" }, { "constant": false, "inputs": [{ "name": "_from", "type": "address" }, { "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" }], "name": "transferFrom", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "decimals", "outputs": [{ "name": "", "type": "uint8" }], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "initialSupply", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "type": "function" }, { "constant": true, "inputs": [{ "name": "_address", "type": "address" }], "name": "balanceOf", "outputs": [{ "name": "balance", "type": "uint256" }], "payable": false, "type": "function" }, { "constant": true, "inputs": [], "name": "symbol", "outputs": [{ "name": "", "type": "string" }], "payable": false, "type": "function" }, { "constant": false, "inputs": [{ "name": "_to", "type": "address" }, { "name": "_value", "type": "uint256" }], "name": "transfer", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "type": "function" }, { "constant": true, "inputs": [{ "name": "_owner", "type": "address" }, { "name": "_spender", "type": "address" }], "name": "allowance", "outputs": [{ "name": "remaining", "type": "uint256" }], "payable": false, "type": "function" }, { "inputs": [], "payable": false, "type": "constructor" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "from", "type": "address" }, { "indexed": true, "name": "to", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }], "name": "Transfer", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "owner", "type": "address" }, { "indexed": true, "name": "spender", "type": "address" }, { "indexed": false, "name": "value", "type": "uint256" }], "name": "Approval", "type": "event" }]
+const Token = web3.eth.contract(token_abi).at(token_address)
+
 const logoAddresses = [
   '0xD82ce82FBe3fc5b0429De15617604A7c6A8E0B0f',
   '0x17DA2B4227bdfbF6c4dc39afea1E4F6e0af575B7',
@@ -25,20 +32,31 @@ const logoAddresses = [
   '0x3503317F65b1cdA3d48009AB963Be13BB6960A38'
 ]
 
-wss.on('connection', function connection(ws, req) {
-  const location = url.parse(req.url, true);
-  // You might use location.query.access_token to authenticate or share sessions
-  // or req.headers.cookie (see http://stackoverflow.com/a/16395220/151312)
 
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
-  });
-  web3.eth.getBlockNumber((error, result) => {
-    ws.send(JSON.stringify({ blockNumber: result }))
-  });
-  
+app.get('/blockNumber', (req, res) => {
+  web3.eth.getBlockNumber((err, result) => {
+    console.log(result)
+    res.send(JSON.stringify({ blockNumber: result }))
+  })
 });
 
-server.listen(3000, function listening() {
-  console.log('Listening on %d', server.address().port);
-});
+app.get('/votes', (req, res) => {
+  Promise.all(
+    logoAddresses.map(address => {
+      return {
+        address: address,
+        vote: Token.balanceOf(address)
+      }
+    })
+  ).then(obj => {
+    addr_vote = {}
+    for (let i = 0; i < obj.length; i++) {
+      addr_vote[obj[i].address] = obj[i].vote.toNumber()
+    }
+    return addr_vote
+  }).then(obj => {
+    res.send(JSON.stringify(obj))
+  })
+})
+
+app.listen(3000);
