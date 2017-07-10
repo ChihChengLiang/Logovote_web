@@ -1,0 +1,6 @@
+version: "2"
+services:
+  logovote-client:
+    build: ./client
+    ports:
+      - 5000:5000
