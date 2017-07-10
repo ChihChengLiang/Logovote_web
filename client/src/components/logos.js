@@ -8,6 +8,7 @@ class Logos extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      mounted: false,
       votes: logo_info.map(logo => {
         let addr_vote = {}
         for (let i = 0; i < logo.length; i++) {
@@ -19,12 +20,33 @@ class Logos extends Component {
   }
 
   componentDidMount() {
+    this.startPolling();
+    this.setState({ mounted: true });
+  }
+  componentWillUnmount() {
+    if (this._timer) {
+      clearInterval(this._timer);
+      this._timer = null;
+    }
+    this.setState({ mounted: false });
+  }
+
+  startPolling() {
+    let self = this;
+    setTimeout(function () {
+      if (!self.state.mounted) { return; }
+      self.poll();
+      self._timer = setInterval(self.poll.bind(self), 15000);
+    }, 1000);
+  }
+  poll() {
     fetch(votes_api)
       .then((res) => res.json())
       .then(data => {
         this.setState({ votes: data })
       })
   }
+
 
   render() {
     return (

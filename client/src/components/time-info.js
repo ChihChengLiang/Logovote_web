@@ -26,12 +26,12 @@ class TimeInfo extends Component {
     this.setState({ mounted: false });
   }
   startPolling() {
-    var self = this;
+    let self = this;
     setTimeout(function () {
       if (!self.state.mounted) { return; }
       self.poll();
       self._timer = setInterval(self.poll.bind(self), 15000);
-    }, 7000);
+    }, 1000);
   }
 
   poll() {
