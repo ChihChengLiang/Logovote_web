@@ -11,6 +11,8 @@ services:
     build: ./server
     ports:
       - 3000:3000
+    environments:
+      - FULLNODE_URL: fullnode
     links:
       - fullnode
   fullnode:
