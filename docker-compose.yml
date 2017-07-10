@@ -1,9 +1,10 @@
 version: "2"
 services:
   logovote-client:
-    build: ./client
-    environment:
-      - REACT_APP_ROOT=0.0.0.0
+    build:
+      context: ./client
+      args:
+        ROOT_URL: 0.0.0.0
     ports:
       - 5000:5000
   logovote-server:
