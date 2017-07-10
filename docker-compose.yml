@@ -7,16 +7,19 @@ services:
         ROOT_URL: 0.0.0.0
     ports:
       - 5000:5000
+    restart: on-failure
   logovote-server:
     build: ./server
     ports:
       - 3000:3000
-    environments:
-      - FULLNODE_URL: fullnode
+    environment:
+      - FULLNODE_URL=fullnode
     links:
       - fullnode
+    restart: on-failure
   fullnode:
     image: parity/parity:beta
     volumes:
       - ./mnt/:/root/.local/share/io.parity.ethereum/
     command: "--jsonrpc-cors '*' --jsonrpc-interface 'all' --jsonrpc-hosts 'all'"
+    restart: on-failure
