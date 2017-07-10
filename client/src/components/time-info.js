@@ -31,7 +31,7 @@ class TimeInfo extends Component {
       if (!self.state.mounted) { return; }
       self.poll();
       self._timer = setInterval(self.poll.bind(self), 15000);
-    }, 1000);
+    }, 7000);
   }
 
   poll() {
@@ -54,29 +54,33 @@ class TimeInfo extends Component {
       <section className="hero is-warning ">
         <div className="hero-body">
           <div className="container">
-            <h1 className="title"> Clock is ticking</h1>
+            <h1 className="title">緊張刺激哦！ Clock is ticking</h1>
 
             <nav className="level">
               <div className="level-item has-text-centered">
                 <div>
-                  <p className="heading"> Current Block</p>
+                  <p className="heading">目前區塊高度</p>
+                  <p className="heading">Current Block</p>
                   <p className="title"> {this.state.curr_block}</p>
                 </div>
               </div>
               <div className="level-item has-text-centered">
                 <div>
-                  <p className="heading">  End Block</p>
+                  <p className="heading">投票結束區塊高度</p>
+                  <p className="heading">End Block</p>
                   <p className="title"> {end_block}</p>
                 </div>
               </div>
               <div className="level-item has-text-centered">
                 <div>
+                  <p className="heading">預估結束時間</p>
                   <p className="heading">Estimate EndTime</p>
                   <p className="title"> {this.timeFromNow().calendar()} </p>
                 </div>
               </div>
               <div className="level-item has-text-centered">
                 <div>
+                  <p className="heading">預估距今結束時間</p>
                   <p className="heading">EndTime From Now</p>
                   <p className="title"> {this.timeFromNow().fromNow()}</p>
                 </div>
