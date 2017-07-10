@@ -29,11 +29,21 @@ class Header extends Component {
 class HowTo extends Component {
   render() {
     return (
-      <section className="hero is-medium is-bold">
+      <section className="hero is-medium is-bold is-dark">
         <div className="hero-body">
           <div className="container">
             <h1 className="title"> How do I vote?</h1>
-            <h2 className="subtitle"> Let me tell ya</h2>
+            <h2 className="subtitle"> Let me tell ya, it's simple!</h2>
+            <div className="columns">
+              <div className="column is-half">
+                <p >You get tokens to vote, ...</p>
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/MRN9-vkazMQ" frameborder="0" allowfullscreen></iframe>
+              </div>
+              <div className="column is-half">
+                <p>and you vote with the tokens!</p>
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/-8N5AtsaTU4" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -45,15 +55,20 @@ class HowTo extends Component {
 class LearnMore extends Component {
   render() {
     return (
-      <section className="hero is-medium is-bold">
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title"> How do I vote?</h1>
-            <h2 className="subtitle"> Let me tell ya</h2>
-
+      <footer className="footer">
+        <div className="container">
+          <div className="content has-text-centered">
+            <p>
+              Learn more with
+              <strong>
+                <a href="https://www.facebook.com/groups/443751072484739/">
+                  Taipei Ethereum Meetup
+                </a>
+              </strong>
+            </p>
           </div>
         </div>
-      </section>
+      </footer>
     )
   }
 }
