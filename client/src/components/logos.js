@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo_info from './logo_info';
 import QRCode from 'qrcode-react';
 
+
+const votes_api = `http://${process.env.REACT_APP_ROOT}:3000/votes`
 class Logos extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +19,7 @@ class Logos extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/votes")
+    fetch(votes_api)
       .then((res) => res.json())
       .then(data => {
         this.setState({ votes: data })
