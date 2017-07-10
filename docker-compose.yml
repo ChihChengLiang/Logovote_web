@@ -4,3 +4,14 @@ services:
     build: ./client
     ports:
       - 5000:5000
+  logovote-server:
+    build: ./server
+    ports:
+      - 3000:3000
+    links:
+      - fullnode
+  fullnode:
+    image: parity/parity:beta
+    volumes:
+      - ./mnt/:/root/.local/share/io.parity.ethereum/
+    command: "--jsonrpc-cors '*' --jsonrpc-interface 'all' --jsonrpc-hosts 'all'"
