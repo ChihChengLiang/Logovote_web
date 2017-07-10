@@ -28,7 +28,6 @@ const logoAddresses = [
 
 app.get('/blockNumber', (req, res) => {
   web3.eth.getBlockNumber((err, result) => {
-    console.log(result)
     res.send(JSON.stringify({ blockNumber: result }))
   })
 });
