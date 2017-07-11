@@ -37,11 +37,11 @@ class HowTo extends Component {
             <div className="columns">
               <div className="column is-half">
                 <p >You get tokens to vote, ...</p>
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/MRN9-vkazMQ" frameborder="0" allowfullscreen></iframe>
+                <iframe title="get-token" width="100%" height="315" src="https://www.youtube.com/embed/MRN9-vkazMQ" frameborder="0" allowfullscreen></iframe>
               </div>
               <div className="column is-half">
                 <p>and you vote with the tokens!</p>
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/-8N5AtsaTU4" frameborder="0" allowfullscreen></iframe>
+                <iframe title="vote" width="100%" height="315" src="https://www.youtube.com/embed/-8N5AtsaTU4" frameborder="0" allowfullscreen></iframe>
               </div>
             </div>
 
