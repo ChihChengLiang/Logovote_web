@@ -3,7 +3,7 @@ import logo_info from './logo_info';
 import QRCode from 'qrcode-react';
 
 
-const votes_api = `http://${process.env.REACT_APP_ROOT}:3000/votes`
+const votes_api = `http://${process.env.PUBLIC_URL}:3000/votes`
 class Logos extends Component {
   constructor(props) {
     super(props);

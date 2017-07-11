@@ -6,7 +6,7 @@ COPY . .
 
 # Build for production.
 
-ENV REACT_APP_ROOT $ROOT_URL
+ENV PUBLIC_URL $ROOT_URL
 
 RUN yarn &&\
     npm run build --production
