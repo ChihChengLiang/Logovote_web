@@ -3,7 +3,7 @@ import moment from 'moment';
 
 const end_block = 4039902;
 const avg_block_time = 14;
-const blockNumber_api = `http://${process.env.PUBLIC_URL}:3000/blockNumber`;
+const blockNumber_api = `http://${process.env.REACT_APP_ROOT}:3000/blockNumber`;
 class TimeInfo extends Component {
 
   constructor(props) {
