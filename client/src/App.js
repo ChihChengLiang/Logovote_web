@@ -29,7 +29,7 @@ class Header extends Component {
 class HowTo extends Component {
   render() {
     return (
-      <section className="hero is-medium is-bold is-dark">
+      <section className="hero is-medium is-bold is-light">
         <div className="hero-body">
           <div className="container">
             <h1 className="title"> How do I vote?</h1>
@@ -45,6 +45,37 @@ class HowTo extends Component {
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+    )
+  }
+}
+
+class Sponsors extends Component {
+  render() {
+    const sponsors = [
+      {
+        name: "Consensus Innovation",
+        img: `${process.env.PUBLIC_URL}/sponsors/css.png`
+      }, {
+        name: "DLT DOJO",
+        img: "https://dltdojo.org/android-chrome-256x256.png"
+      }
+
+    ]
+    return (
+      <section className="hero is-medium is-dark">
+        <div className="hero-body">
+          <div className="container">
+            <h1 className="title"> Sponsors</h1>
+            <div className="columns">
+              {sponsors.map((sponsor, key) => (
+                <div className="column is-3 " key={key}>
+                  <img src={sponsor.img} width="80%" alt={sponsor.name}/>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -74,6 +105,7 @@ class LearnMore extends Component {
 }
 
 
+
 class App extends Component {
   render() {
     return (
@@ -82,6 +114,7 @@ class App extends Component {
         <TimeInfo />
         <Logos />
         <HowTo />
+        <Sponsors />
         <LearnMore />
       </div>
     );
