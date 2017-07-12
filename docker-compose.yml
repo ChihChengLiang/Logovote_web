@@ -30,7 +30,7 @@ services:
     image: parity/parity:beta
     volumes:
       - ./mnt/:/root/.local/share/io.parity.ethereum/
-    command: "--no-ui --no-ancient-blocks --jsonrpc-cors '*' --jsonrpc-interface 'all' --jsonrpc-hosts 'all'"
+    command: "--no-ui --no-ancient-blocks --tracing off --no-dapps --jsonrpc-cors '*' --jsonrpc-interface 'all' --jsonrpc-hosts 'all'"
     deploy:
       resources:
         limits:
