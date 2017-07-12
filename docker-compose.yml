@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 services:
   logovote-client:
     build:
@@ -7,6 +7,10 @@ services:
         ROOT_URL: 0.0.0.0
     ports:
       - 5000:5000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
     restart: on-failure
   logovote-server:
     build: ./server
@@ -17,10 +21,18 @@ services:
       - NODE_ENV=production
     links:
       - fullnode
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
     restart: on-failure
   fullnode:
     image: parity/parity:beta
     volumes:
       - ./mnt/:/root/.local/share/io.parity.ethereum/
     command: "--no-ui --no-ancient-blocks --jsonrpc-cors '*' --jsonrpc-interface 'all' --jsonrpc-hosts 'all'"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
     restart: on-failure
