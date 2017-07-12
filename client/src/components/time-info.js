@@ -62,7 +62,7 @@ class TimeInfo extends Component {
                 <div>
                   <p className="heading">目前區塊高度</p>
                   <p className="heading">Current Block</p>
-                  {this.state.curr_block === 0 ? <Spinner name="three-bounce" /> : <p className="title">this.state.curr_block}</p>}
+                  {this.state.curr_block === 0 ? <Spinner name="three-bounce" /> : <p className="title">{this.state.curr_block}</p>}
                 </div>
               </div>
               <div className="level-item has-text-centered">
