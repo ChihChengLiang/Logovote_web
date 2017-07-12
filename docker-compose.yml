@@ -4,7 +4,7 @@ services:
     build:
       context: ./client
       args:
-        ROOT_URL: 0.0.0.0
+        ROOT_URL: www.eth.taipei
     ports:
       - 5000:5000
     deploy:
