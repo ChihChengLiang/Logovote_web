@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo_info from './logo_info';
+import Spinner from 'react-spinkit';
 import QRCode from 'qrcode-react';
-
 
 const votes_api = `http://${process.env.REACT_APP_ROOT}:3000/votes`
 class Logos extends Component {
@@ -9,13 +9,10 @@ class Logos extends Component {
     super(props);
     this.state = {
       mounted: false,
-      votes: logo_info.map(logo => {
-        let addr_vote = {}
-        for (let i = 0; i < logo.length; i++) {
-          addr_vote[logo[i].address] = 0
-        }
-        return addr_vote
-      })
+      votes: logo_info.reduce((result, logo) => {
+        result[logo.address] = 0
+        return result
+      }, {})
     }
   }
 
@@ -75,7 +72,11 @@ class Logos extends Component {
                         <div className="columns">
                           <div className="column is-half">
                             Current Vote
-                        <h1 className="title is-1 is-spaced">{this.state.votes[logo.address]} </h1>
+                            {this.state.votes[logo.address] === 0 ?
+                              <Spinner name="three-bounce" /> :
+                              <h1 className="title is-1 is-spaced">{this.state.votes[logo.address]} </h1>
+                            }
+
 
                           </div>
                           <div className="column is-half">
