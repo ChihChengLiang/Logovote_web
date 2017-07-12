@@ -1,8 +1,10 @@
 const express = require('express');
 const Web3 = require('web3');
 const cors = require('cors');
+const compression = require('compression');
 const app = express();
 app.use(cors())
+app.use(compression())
 
 const web3 = new Web3(new Web3.providers.HttpProvider(`http://${process.env.FULLNODE_URL}:8545`));
 

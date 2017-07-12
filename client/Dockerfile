@@ -8,7 +8,8 @@ COPY . .
 
 ENV REACT_APP_ROOT $ROOT_URL
 
-RUN yarn &&\
-    npm run build --production
+RUN yarn install --production --ignore-optional
+
+RUN npm run build --production
 
 CMD serve -s build
