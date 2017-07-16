@@ -72,7 +72,7 @@ class Sponsors extends Component {
             <div className="columns">
               {sponsors.map((sponsor, key) => (
                 <div className="column is-3 " key={key}>
-                  <img src={sponsor.img} width="80%" alt={sponsor.name}/>
+                  <img src={sponsor.img} width="80%" alt={sponsor.name} />
                 </div>
               ))}
             </div>
@@ -88,6 +88,25 @@ class LearnMore extends Component {
     return (
       <footer className="footer">
         <div className="container">
+          <div className="level">
+            <div className="level-item">
+              <div>
+                <p class="heading">Contract source code</p>
+                <p class="title">
+                  <a target="_blank" href="https://github.com/EtherTW/LogoVote2017" rel="noopener noreferrer">EtherTW/LogoVote2017</a>
+                </p>
+              </div>
+            </div>
+            <div className="level-item">
+              <div>
+                <p class="heading">This website source code</p>
+                <p class="title">
+                  <a target="_blank" href="https://github.com/chihchengliang/Logovote_web" rel="noopener noreferrer">ChihChengLiang/Logovote_web</a>
+                </p>
+              </div>
+
+            </div>
+          </div>
           <div className="content has-text-centered">
             <p>
               Learn more with
