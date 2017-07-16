@@ -8,7 +8,7 @@ const logo_info = [
   },
   {
     address: '0x17DA2B4227bdfbF6c4dc39afea1E4F6e0af575B7',
-    image: 'Logo2.png',
+    image: 'Logo2.jpg',
     title: 'Ethereum in Taipei',
     author: 'insowe',
     url: 'https://github.com/EtherTW/LogoVote2017/issues/10'
