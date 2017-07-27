@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css'
 import 'bulma/css/bulma.css'
 import TimeInfo from './components/time-info';
-import Logos from './components/logos';
-
+import Logos, { Logo } from './components/logos';
+import logo_info from './components/logo_info';
 
 class Header extends Component {
   render() {
@@ -19,6 +19,9 @@ class Header extends Component {
                 rel="noopener noreferrer">
                 0x3Ab1d534Bb477f516817eFaAf0B569f419b8e292</a>
             </h3>
+            <div>
+              <a className="button" href={logo_repo_url} target="blank">下載 Logo | Download Logo here!</a>
+            </div>
           </div>
         </div>
       </section>
@@ -26,14 +29,38 @@ class Header extends Component {
   }
 }
 
+const logo_repo_url = "https://github.com/EtherTW/Logo"
+
+class Winner extends Component {
+  render() {
+    return (
+      <section className="hero is-medium is-bold is-light">
+        <div className="hero-body">
+          <h1 className="title"> The Winner</h1>
+          <div className="container">
+            <div className="columns">
+              {Logo(logo_info[1], 0)}
+              <div className="column is-8" key={1}>
+                <img src="https://github.com/EtherTW/Logo/raw/master/main.jpg" alt="full logo design" width="100%" />
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    )
+  }
+}
+
+
 class HowTo extends Component {
   render() {
     return (
       <section className="hero is-medium is-bold is-light">
         <div className="hero-body">
           <div className="container">
-            <h1 className="title"> How do I vote?</h1>
-            <h2 className="subtitle"> Let me tell ya, it's simple!</h2>
+            <h1 className="title"> How did voters vote?</h1>
             <div className="columns">
               <div className="column is-half">
                 <p >You get tokens to vote, ...</p>
@@ -104,7 +131,6 @@ class LearnMore extends Component {
                   <a target="_blank" href="https://github.com/chihchengliang/Logovote_web" rel="noopener noreferrer">ChihChengLiang/Logovote_web</a>
                 </p>
               </div>
-
             </div>
           </div>
           <div className="content has-text-centered">
@@ -132,6 +158,7 @@ class App extends Component {
         <Header />
         <TimeInfo />
         <Logos />
+        <Winner />
         <HowTo />
         <Sponsors />
         <LearnMore />
