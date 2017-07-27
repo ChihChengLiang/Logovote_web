@@ -5,6 +5,8 @@ import TimeInfo from './components/time-info';
 import Logos, { Logo } from './components/logos';
 import logo_info from './components/logo_info';
 
+const logo_repo_url = "https://github.com/EtherTW/Logo"
+
 class Header extends Component {
   render() {
     return (
@@ -20,7 +22,10 @@ class Header extends Component {
                 0x3Ab1d534Bb477f516817eFaAf0B569f419b8e292</a>
             </h3>
             <div>
-              <a className="button" href={logo_repo_url} target="blank">下載 Logo | Download Logo here!</a>
+              <a className="button is-large is-outlined is-light"
+                href={logo_repo_url}
+                target="blank"
+                style={{ marginTop: 50 }}>下載 Logo | Download Logo here!</a>
             </div>
           </div>
         </div>
@@ -29,20 +34,23 @@ class Header extends Component {
   }
 }
 
-const logo_repo_url = "https://github.com/EtherTW/Logo"
+
 
 class Winner extends Component {
   render() {
     return (
       <section className="hero is-medium is-bold is-light">
         <div className="hero-body">
-          <h1 className="title"> The Winner</h1>
+
           <div className="container">
             <div className="columns">
               {Logo(logo_info[1], 0)}
-              <div className="column is-8" key={1}>
-                <img src="https://github.com/EtherTW/Logo/raw/master/main.jpg" alt="full logo design" width="100%" />
-
+              <div className="column is-6 is-offset-1" key={1}>
+                <h1 className="title"> The Winner</h1>
+                <img src="https://github.com/EtherTW/Logo/raw/master/main.jpg" alt="full logo design" width="60%" />
+                <div style={{marginTop:50}}>
+                  <a className="button is-large is-dark is-outlined" href={logo_repo_url} target="blank">下載 Logo | Download Logo here!</a>
+                </div>
               </div>
             </div>
 
