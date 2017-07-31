@@ -48,7 +48,7 @@ class Winner extends Component {
               <div className="column is-6 is-offset-1" key={1}>
                 <h1 className="title"> The Winner</h1>
                 <img src="https://github.com/EtherTW/Logo/raw/master/main.jpg" alt="full logo design" width="60%" />
-                <div style={{marginTop:50}}>
+                <div style={{ marginTop: 50 }}>
                   <a className="button is-large is-dark is-outlined" href={logo_repo_url} target="blank">下載 Logo | Download Logo here!</a>
                 </div>
               </div>
@@ -92,10 +92,16 @@ class Sponsors extends Component {
     const sponsors = [
       {
         name: "Consensus Innovation",
-        img: `${process.env.PUBLIC_URL}/sponsors/css.png`
+        img: "sponsors/css.png",
+        url: "http://www.css-inno.com/"
       }, {
         name: "DLT DOJO",
-        img: "https://dltdojo.org/android-chrome-256x256.png"
+        img: "https://dltdojo.org/android-chrome-256x256.png",
+        url: "https://dltdojo.org/"
+      }, {
+        name: "Log4 Analytics",
+        img: "sponsors/log4.jpg",
+        url: "http://log4analytics.com/"
       }
 
     ]
@@ -107,7 +113,9 @@ class Sponsors extends Component {
             <div className="columns">
               {sponsors.map((sponsor, key) => (
                 <div className="column is-3 " key={key}>
-                  <img src={sponsor.img} width="80%" alt={sponsor.name} />
+                  <a href={sponsor.url} target="_blank">
+                    <img src={sponsor.img} width="80%" alt={sponsor.name} />
+                  </a>
                 </div>
               ))}
             </div>
